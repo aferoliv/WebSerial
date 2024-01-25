@@ -3,48 +3,163 @@
   <head>
     <title>Leitor de Porta Serial</title>
     <!script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <!____________________Bootstrap __________________________>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="col-xl-6">
-      <div class="card mb-4">
-        <div class="card-header"><div class="col-xl-6">
-          <div class="card mb-4">
-            <div class="card-header">
-                <h1> Semi-Automatic Titration SAT - Reches</h1>
-                <h4> Kinetics Data                                      Titration Data</h4>
-                <textarea id="dataLog" rows="10" cols="50"></textarea>
-                <textarea id="dataTitr" rows="10" cols="50"></textarea>
-                
-                <button id="connectButton">Abrir/Conectar Porta Serial</button><br>
-                <h4> Volume da Alíquota </h4> <input type="number" id="inputVolume" placeholder="microliter unit">
-                <button id="buttonVolume">Enter</button>
-                <p id"testeVolume"> </p>
-                <button id="captura_dados">Capturar Dado</button>
-                <div class="col-xl-6">
-                  <p>  ============= </p>
-                  <button id="sair">Sair</button>
-                </div>
-             </div>
-
-            <div class="col-xl-6">
-        <div class="card mb-4">
-        <div class="card-header">
-            <div>                                      
-                <input type="file" id="input" multiple />              
+    <!______________________________Menu________________________>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">ReChES</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown link
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!_____________________Corpo da Página________________________________________>
+    <main>
+      <h1  id="Title">   Semi-Automatic Titration SAT - Reches</h1>
+      <div class="container-fluid px-4">
+        <div class="row">
+          <div class="col-xl-4 col-md-4">
+            <div class="container-fluid px-4">
+              <div class="col-xl-4 col-md-4">
+                <h5> Volume da Alíquota </h5> <input type="number" id="inputVolume" placeholder="microliter unit">                            
+              </div>
             </div>
           </div>
-          <div class="card-body">
-            <canvas id="kinetics" width="50%" height="60"></canvas>
+          <div class="container-fluid px-4">
+            <div class="col-xl-2 col-md-2"> 
+              <button id="captura_dados">Capturar Dado</button>               
+            </div>  
           </div>
-         
+          <div id="botoes" class="col-xl-4 col-md-4"> 
+              <button id="reset">Reset</button>
+              <button id="sair">Sair</button>
+              <input type="file" id="input" multiple />  
+          </div> 
+        </div>
+        <div id="textBox" class="row">
+            <div class="col-xl-4 col-md-4">
+              <h5>Kinetics Data</h5>
+              <textarea id="dataLog" rows="10" cols="50"></textarea>              
+            </div>
+            <div class="col-xl-4 col-md-4">                           
+              <h5>Titration Data</h5> 
+              <textarea id="dataTitr" rows="10" cols="50"></textarea>
+              <button id="connectButton">Abrir/Conectar Porta Serial</button><br>
+            </div>           
+        </div>
+        <div id="graphics" class="row">
+          <div class="col-xl-4 col-md-4">
+            <canvas id="kinetics" width="10%" height="10"></canvas>
+          </div>
+          <div class="col-xl-4 col-md-4">
+            <canvas id="titration" width="10%" height="60"></canvas>
+          </div>
+        </div>
+      </div>  
+   
+  </main>
+  <footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+      <div class="d-flex align-items-center justify-content-between small">
+        <div class="text-muted">Informações de Rodapé</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-9 col-md-4">
+        <br />
+      </div>
+      <div class="col-xl-3 col-md-4">
+        <div class="card bg-primary text-white mb-4">
+          <div class="card-body">Us:</div>
+          <div class="container-fluid px-4">
+            <div
+              class="d-flex align-items-center justify-content-between small"
+            >
+              <figure>
+                <img
+                  src="assets/images/reches500.png"
+                  alt="description"
+                  width="100"
+                  height="48"
+                />
+                <figcaption style="font-size: xx-small">
+                  ReChES - Research Group of <br />
+                  Chemistry of Solutions <br />and Interfaces
+                  <br />
+                  <a
+                    href="https://solucaoquimica.com/"
+                    target="_blank"
+                    rel="nofollow"
+                  >
+                  </a>
+                  <br />
+
+                  <br />
+                </figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="assets/images/800x600-UFV.png"
+                  alt="description"
+                  width="100"
+                  height="48"
+                />
+                <figcaption style="font-size: xx-small">
+                  Universidade Federal de Viçosa <br />
+                  Brazil
+                </figcaption>
+              </figure>
+            </div>
+            <div id="temp_data">
+              <p>os dados de alpha:</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </footer>
+    <!____________________Notie.js___________________________>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.min.js" integrity="sha512-NHRCwRf2LnVSlLDejCA9oS3fG3/FLSQIPCjAWl3M7tVi5wszwr6FxkjotWnQDXLE+aLKcxRrzFDNEgXj9nvkPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.css" integrity="sha512-7DgarsuahzxiOonlZeYgjXuPFVEDIylPzzlmANJdccCIO0H7ofXKbAKf0FWCkh8NkCFswe3Hpj6HegSTYH6SJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.js" integrity="sha512-A5WzD8nBuvwzzpLroI2Sa6RL4hv4GnxwEOsRtIFCyemSrOCVhwE/Xs1DSEB1AgpKafES8gMC+NmAUy3lGSqxZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.min.css" integrity="sha512-UrjLcAek5jbj1vwGbXkviPHtgSNVNQCedX7cBIMDdSI2iZtUcZcoTh2Sqc8R9mVcijOjFUi1IlxhfrE1uWaIog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!____________________Chart.js __________________________>  
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
       crossorigin="anonymous"
     ></script>
+    <!____________________Arquivos Personalizados __________________________>  
     <script src="chartRS.js"></script>
     <script src="scripts.js"></script>
+    <!____________________FIM __________________________>  
   </body>
 </html>

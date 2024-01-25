@@ -1,0 +1,30 @@
+
+                  <div id="volume"  class="card-body" >              
+      <h5> Volume da Alíquota </h5> <input type="number" id="inputVolume" placeholder="microliter unit">            
+      <button id="captura_dados">Capturar Dado</button>
+    </div>
+    <div id="botoes" class="col-xl-6"> 
+      <button id="reset">Reset</button>
+      <button id="sair">Sair</button>
+    </div>
+    <section class="card-header">       
+      <div class="col-xl-2 col-md-2"></div>
+          <p> Kinetics Data</p>
+          <p>Titration Data</p> 
+      </div>
+      <div>             
+          <button id="connectButton">Abrir/Conectar Porta Serial</button><br>
+          <textarea id="dataLog" rows="10" cols="50"></textarea>
+          <textarea id="dataTitr" rows="10" cols="50"></textarea>
+      </div>
+        <div class="card-header">
+            <div>                                      
+                <input type="file" id="input" multiple />              
+            </div>
+        </div>
+       <div class="card-body">
+            <canvas id="kinetics" width="10%" height="10"></canvas>
+            <canvas id="titration" width="10%" height="60"></canvas>
+       </div>
+       
+    </section>    

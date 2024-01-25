@@ -1,6 +1,6 @@
 let titr = {
   data_array: [0],
-  data_grafico:[0],
+  data_grafico: [0],
   curva: [0],
   tempo: [0],
 };
@@ -12,8 +12,6 @@ var transito = 1;
 let volume = 0;
 const captura = document.getElementById("captura_dados");
 const sair_leitura = document.getElementById("sair");
-
-document.getElementById("buttonVolume").addEventListener("click", aliquota());
 
 document.getElementById("connectButton").addEventListener("click", async () => {
   // Pergunta ao Usuário qual porta deseja abrir/conectar
@@ -43,7 +41,7 @@ document.getElementById("connectButton").addEventListener("click", async () => {
 
       const linha = text.split("b'");
       let data_linha = linha;
-      canal = parseFloat(data_linha[0]);      //
+      canal = parseFloat(data_linha[0]); //
       // array canal: converte vetor data_linha em float
       //
       /*data_linha.forEach((element) => {
@@ -58,19 +56,19 @@ document.getElementById("connectButton").addEventListener("click", async () => {
         document.getElementById("dataLog").value += data_linha;
       }
       // WebTransportBidirectionalStream.envio;
-      //  
+      //
       //atualiza o gráfico principal
       //
       if (data_linha.length == 3) {
         temp++;
-        titr.tempo.push(temp);                  //acrescenta a contagem de elementos
-        titr.data_array.push(data_linha);       // transfere a string da Serial para array   
-        titr.data_grafico.push(canal);          // acrescenta a primeira coluna no vetor data_grafico 
-        cinGrafico.data.labels = titr.tempo;    // eixo X
+        titr.tempo.push(temp); //acrescenta a contagem de elementos
+        titr.data_array.push(data_linha); // transfere a string da Serial para array
+        titr.data_grafico.push(canal); // acrescenta a primeira coluna no vetor data_grafico
+        cinGrafico.data.labels = titr.tempo; // eixo X
         cinGrafico.data.datasets[0].backgroundColor = "rgba(25, 9, 132, 1)";
-        cinGrafico.data.datasets[0].data = canal[0];  // eixo Y serie 1
-        
-        cinGrafico.update();          //atualiza o gráfico
+        cinGrafico.data.datasets[0].data = titr.data_grafico; // eixo Y serie 1
+
+        cinGrafico.update(); //atualiza o gráfico
       }
 
       //if (data_linha.length == 3) {}
@@ -105,7 +103,7 @@ captura.addEventListener("click", function () {
 
   console.log("saveFile", nome);
 });
-volume = document.getElementById("buttonVolume").value;
+//volume = document.getElementById("buttonVolume").value;
 
 function aliquota() {
   console.log("dentro aliquota");
