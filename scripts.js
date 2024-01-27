@@ -1,6 +1,7 @@
 let titr = {
   data_array: [0],
   data_grafico: [0],
+  data_titr: [0],
   curva: [0],
   tempo: [0],
 };
@@ -37,6 +38,9 @@ document.getElementById("connectButton").addEventListener("click", async () => {
       // Converte of format Uint8Array para string para adicionar ao elemento HTML.
       const textDecoder = new TextDecoder();
       const text = textDecoder.decode(value);
+      arraySerial = serialData(text);
+      /*
+      const text = textDecoder.decode(value);
       //console.log(text, textDecoder);
 
       const linha = text.split("b'");
@@ -49,6 +53,7 @@ document.getElementById("connectButton").addEventListener("click", async () => {
         console.log(typeof canal, data_linha.slice(","), typeof linha);
       });
       */
+      /*
       if (text.includes("niciando")) {
         document.getElementById("dataLog").value += "\t \t dados \n";
         document.getElementById("dataTitr").value += "# \t volume \t dados \n";
@@ -75,6 +80,7 @@ document.getElementById("connectButton").addEventListener("click", async () => {
       //cria um contador para o eixo x
 
       //
+*/
     }
   } catch (error) {
     console.error(error);
@@ -84,15 +90,20 @@ document.getElementById("connectButton").addEventListener("click", async () => {
   }
 });
 
-captura.addEventListener("click", function () {
-  titr.curva.push(titr.data_linha);
+captura_dados.addEventListener("click", function () {
+  //
+  //arrayTitr=titrationData();
+  /*
   pontos++;
   volume += parseFloat(document.getElementById("inputVolume").value);
+  titr.curva.push(parseFloat(data_linha[0]));
+  console.log(data_linha[0], parseFloat(data_linha[0]), titr.curva);
   if (volume == 0) {
     volume = 100;
   }
   volumetotal.push(volume);
   const nome = document.getElementById("input").value;
+  //
   document.getElementById("dataTitr").value += pontos;
   document.getElementById("dataTitr").value += "\t";
   document.getElementById("dataTitr").value += volume;
@@ -100,14 +111,18 @@ captura.addEventListener("click", function () {
   document.getElementById("dataTitr").value +=
     titr.data_array[titr.data_array.length - 1];
   document.getElementById("dataTitr").value += "\n";
+  //
+  //
+  //
+  titGrafico.data.labels = titr.tempo; // eixo X
+  titGrafico.data.datasets[0].backgroundColor = "rgba(25, 9, 132, 1)";
+  titGrafico.data.datasets[0].data = titr.curva; // eixo Y serie 1
 
+  titGrafico.update(); //atualiza o gráfico
+*/
   console.log("saveFile", nome);
 });
 //volume = document.getElementById("buttonVolume").value;
+input.addEventListener("click", function () {
 
-function aliquota() {
-  console.log("dentro aliquota");
-  volume = document.getElementById("inputVolume").value;
-  //document.getElementById("testeVolume").innerHTML = volume;
-  console.log(volume);
-}
+})

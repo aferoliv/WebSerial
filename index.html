@@ -45,34 +45,35 @@
     <main>
       <h1  id="Title">   Semi-Automatic Titration SAT - Reches</h1>
       <div class="container-fluid px-4">
-        <div class="row">
-          <div class="col-xl-4 col-md-4">
+        <div class="row">          
             <div class="container-fluid px-4">
-              <div class="col-xl-4 col-md-4">
-                <h5> Volume da Alíquota </h5> <input type="number" id="inputVolume" placeholder="microliter unit">                            
+              <div class="col-xl-6 col-md-4">
+                <h5> Aliquot Volume </h5> <input type="number" id="inputVolume" placeholder="microliter unit">                            
               </div>
-            </div>
+              <div id="botoes" class="col-xl-4 col-md-4"> 
+                <button id="connectButton">Open Serial Port</button><br>  
+                <button id="reset">Reset</button>
+                <button id="sair">Stop</button>
+                <br>
+                <label>Filename: </label>
+                <input type="text" id="input" multiple/>  <br>
+                <label>Select Folder</label>
+                <input type="file" id="diretorio">
+              </div>                      
           </div>
-          <div class="container-fluid px-4">
-            <div class="col-xl-2 col-md-2"> 
-              <button id="captura_dados">Capturar Dado</button>               
-            </div>  
-          </div>
-          <div id="botoes" class="col-xl-4 col-md-4"> 
-              <button id="reset">Reset</button>
-              <button id="sair">Sair</button>
-              <input type="file" id="input" multiple />  
-          </div> 
-        </div>
-        <div id="textBox" class="row">
-            <div class="col-xl-4 col-md-4">
-              <h5>Kinetics Data</h5>
+          <div class="container-fluid px-4">            
+        </div>          
+      </div>
+
+        <button id="captura_dados">Instant Capture</button> <br>
+        <div id="textBox" class="row">            
+            <div class="col-xl-4 col-md-4">  
+              <h5 style="text-align:center">Kinetics Data</h5>
               <textarea id="dataLog" rows="10" cols="50"></textarea>              
             </div>
             <div class="col-xl-4 col-md-4">                           
-              <h5>Titration Data</h5> 
-              <textarea id="dataTitr" rows="10" cols="50"></textarea>
-              <button id="connectButton">Abrir/Conectar Porta Serial</button><br>
+              <h5 style="text-align:center">Titration Data</h5> 
+              <textarea id="dataTitr" rows="10" cols="50"></textarea>              
             </div>           
         </div>
         <div id="graphics" class="row">
@@ -80,11 +81,10 @@
             <canvas id="kinetics" width="10%" height="10"></canvas>
           </div>
           <div class="col-xl-4 col-md-4">
-            <canvas id="titration" width="10%" height="60"></canvas>
+            <canvas id="titration" width="10%" height="10"></canvas>
           </div>
         </div>
       </div>  
-   
   </main>
   <footer class="py-4 bg-light mt-auto">
     <div class="container-fluid px-4">
@@ -139,7 +139,7 @@
               </figure>
             </div>
             <div id="temp_data">
-              <p>os dados de alpha:</p>
+              <p></p>
             </div>
           </div>
         </div>
@@ -160,6 +160,7 @@
     <!____________________Arquivos Personalizados __________________________>  
     <script src="chartRS.js"></script>
     <script src="scripts.js"></script>
+    <script src="tratData.js"></script>
     <!____________________FIM __________________________>  
   </body>
 </html>

@@ -8,11 +8,15 @@ section {
   margin: 10px 5px 30px 20px;
 }
 #captura_dados {
-  margin-left: 50%;
+  margin-left: 25%;
 }
 #Title {
   text-align: center;
 }
 #kinetics {
+  margin-left: 10%;
+  margin-right: 20%;
+}
+#titration {
   margin-left: 10%;
 }
