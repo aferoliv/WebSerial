@@ -38,7 +38,7 @@ function serialData(text) {
   //
 }
 
-function arrayTitr() {
+function titrationData() {
   pontos++;
   volume += parseFloat(document.getElementById("inputVolume").value);
   titr.curva.push(parseFloat(data_linha[0]));
