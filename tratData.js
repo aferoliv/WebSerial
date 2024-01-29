@@ -21,7 +21,7 @@ function serialData(text) {
   //atualiza o gráfico principal
   //
   if (data_linha.length == 3) {
-    temp = titr.tempo[titr.tempo.length] + 1;
+    temp = titr.tempo[titr.tempo.length - 1] + 1;
     titr.tempo.push(temp); //acrescenta a contagem de elementos
     titr.data_array.push(data_linha); // transfere a string da Serial para array
     titr.data_grafico.push(canal); // acrescenta a primeira coluna no vetor data_grafico
@@ -39,20 +39,31 @@ function serialData(text) {
 }
 
 function titrationData() {
-  pontos++;
-  volume += parseFloat(document.getElementById("inputVolume").value);
-  titr.curva.push(parseFloat(data_linha[0]));
-  console.log(data_linha[0], parseFloat(data_linha[0]), titr.curva);
-  if (volume == 0) {
-    volume = 100;
+  //pontos++;
+  ponto = document.getElementById("inputVolume").value;
+  if (ponto == "") {
+    ponto = 100;
   }
+  if (typeof ponto == String) {
+    volume += parseFloat(ponto);
+  } else {
+    volume += ponto;
+  }
+  //titr.curva.push(parseFloat(data_linha[0]));
+  dadoTit = titr.data_array[titr.data_array.length - 1];
+  titr.curva.push(dadoTit[0]);
+
   volumetotal.push(volume);
+  console.log(ponto, typeof ponto, volume, typeof volume);
   const nome = document.getElementById("input").value;
   //
-  document.getElementById("dataTitr").value += pontos;
+  /*document.getElementById("dataTitr").value += pontos;
   document.getElementById("dataTitr").value += "\t";
   document.getElementById("dataTitr").value += volume;
   document.getElementById("dataTitr").value += "\t";
+  */
+  document.getElementById("dataTitr").value += volume;
+  document.getElementById("dataTitr").value += ",";
   document.getElementById("dataTitr").value +=
     titr.data_array[titr.data_array.length - 1];
   document.getElementById("dataTitr").value += "\n";
