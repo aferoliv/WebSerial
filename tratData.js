@@ -1,8 +1,10 @@
 function serialData(text) {
   //console.log(text, textDecoder);
+  console.log(text);
   const linha = text.split("b'");
   let data_linha = linha;
-  canal = parseFloat(data_linha[0]); //
+
+  //canal = parseFloat(data_linha[0]); //
   // array canal: converte vetor data_linha em float
   //
   /*data_linha.forEach((element) => {
@@ -10,17 +12,42 @@ function serialData(text) {
       console.log(typeof canal, data_linha.slice(","), typeof linha);
     });
     */
-  if (text.includes("niciando")) {
-    document.getElementById("dataLog").value += "\t \t dados \n";
-    document.getElementById("dataTitr").value += "# \t volume \t dados \n";
-  } else {
-    document.getElementById("dataLog").value += data_linha;
+  aparelho = "arduino-gauge";
+  if (aparelho == "arduino-gauge") {
+    if (text.includes("alores")) {
+      document.getElementById("dataLog").value += "\t \t dados \n";
+      document.getElementById("dataTitr").value += "# \t volume \t dados \n";
+    } else {
+      document.getElementById("dataLog").value += data_linha;
+
+      canal = parseFloat(data_linha);
+      if (canal > 100000) {
+        canal = 0;
+      }
+    }
   }
-  // WebTransportBidirectionalStream.envio;
+  if (aparelho == "arduino-reatorH2") {
+    if (text.includes("niciando")) {
+      document.getElementById("dataLog").value += "\t \t dados \n";
+      document.getElementById("dataTitr").value += "# \t volume \t dados \n";
+    } else {
+      document.getElementById("dataLog").value += data_linha;
+      sinal = data_linha.toString();
+      fim_sub = sinal.indexOf(",");
+
+      if (fim_sub > 0) {
+        sub_canal = sinal.substring(0, fim_sub);
+      } else {
+        sub_canal = "0";
+      }
+    }
+    canal = parseFloat(sub_canal);
+  } else {
+  }
   //
   //atualiza o gráfico principal
   //
-  if (data_linha.length == 3) {
+  if (data_linha.length != 0) {
     temp = titr.tempo[titr.tempo.length - 1] + 1;
     titr.tempo.push(temp); //acrescenta a contagem de elementos
     titr.data_array.push(data_linha); // transfere a string da Serial para array
@@ -29,6 +56,7 @@ function serialData(text) {
     cinGrafico.data.datasets[0].backgroundColor = "rgba(25, 9, 132, 1)";
     cinGrafico.data.datasets[0].data = titr.data_grafico; // eixo Y serie 1
 
+    //console.log(titr.tempo, titr.data_array, titr.data_grafico);
     cinGrafico.update(); //atualiza o gráfico
   }
 
@@ -49,27 +77,37 @@ function titrationData() {
   } else {
     volume += ponto;
   }
-  //titr.curva.push(parseFloat(data_linha[0]));
-  dadoTit = titr.data_array[titr.data_array.length - 1];
-  titr.curva.push(dadoTit[0]);
+  if (aparelho == "arduino-gauge") {
+    //titr.curva.push(parseFloat(data_linha[0]));
 
-  volumetotal.push(volume);
-  console.log(ponto, typeof ponto, volume, typeof volume);
-  const nome = document.getElementById("input").value;
-  //
-  /*document.getElementById("dataTitr").value += pontos;
-  document.getElementById("dataTitr").value += "\t";
-  document.getElementById("dataTitr").value += volume;
-  document.getElementById("dataTitr").value += "\t";
-  */
-  document.getElementById("dataTitr").value += volume;
-  document.getElementById("dataTitr").value += ",";
-  document.getElementById("dataTitr").value +=
-    titr.data_array[titr.data_array.length - 1];
-  document.getElementById("dataTitr").value += "\n";
-  //
-  //
-  //
+    dadoTit = titr.data_array[titr.data_array.length - 1];
+    titr.curva.push(dadoTit);
+    volumetotal.push(volume);
+    console.log(ponto, typeof ponto, volume, typeof volume);
+    //const nome = document.getElementById("input").value;
+    //
+  
+    document.getElementById("dataTitr").value += volume;
+    document.getElementById("dataTitr").value += ",";
+    document.getElementById("dataTitr").value +=
+      titr.data_array[titr.data_array.length - 1];
+    document.getElementById("dataTitr").value += "\n";
+    //
+    //
+    //
+  }else{    dadoTit = titr.data_array[titr.data_array.length - 1];
+    titr.curva.push(dadoTit);
+    volumetotal.push(volume);
+    console.log(ponto, typeof ponto, volume, typeof volume);
+    //const nome = document.getElementById("input").value;
+    //
+  
+    document.getElementById("dataTitr").value += volume;
+    document.getElementById("dataTitr").value += ",";
+    document.getElementById("dataTitr").value +=
+      titr.data_array[titr.data_array.length - 1];
+    document.getElementById("dataTitr").value += "\n";
+  }
   titGrafico.data.labels = titr.tempo; // eixo X
   titGrafico.data.datasets[0].backgroundColor = "rgba(25, 9, 132, 1)";
   titGrafico.data.datasets[0].data = titr.curva; // eixo Y serie 1

@@ -38,7 +38,7 @@ document.getElementById("connectButton").addEventListener("click", async () => {
       // Converte of format Uint8Array para string para adicionar ao elemento HTML.
       const textDecoder = new TextDecoder();
       const text = textDecoder.decode(value);
-      arraySerial = serialData(text);            
+      arraySerial = serialData(text);
     }
   } catch (error) {
     console.error(error);
@@ -50,11 +50,76 @@ document.getElementById("connectButton").addEventListener("click", async () => {
 
 captura_dados.addEventListener("click", function () {
   // salva o valor lido na Serial como novo arquivo Titulação
-  arrayTitr = titrationData();  
+  arrayTitr = titrationData();
 });
 //volume = document.getElementById("buttonVolume").value;
-input.addEventListener("click", function () {});
 salvando.addEventListener("click", function () {
-  texto=document.getElementById("input").value  
-});
+  let nome = document.getElementById("filename").value;
+  let texto_titr = document.getElementById("dataTitr").value;
+  let texto_kin = document.getElementById("dataLog").value;
 
+  let blob_t = new Blob([texto_titr], { type: "text/plain;charset=utf-8" });
+  saveAs(blob_t, nome + "-titr.csv");
+  let blob_k = new Blob([texto_kin], { type: "text/plain;charset=utf-8" });
+  saveAs(blob_k, nome + "-kin.csv");
+});
+function padrao_sinal() {
+  return [
+    {
+      id: "pHmetro-pH",
+      dataName: "pH",
+      systemDescription: "Esta é a Descrição do Sistema A.",
+    },
+    {
+      id: "pHmetro-mV",
+      dataName: "mV",
+      systemDescription: "Esta é a Descrição do Sistema B.",
+    },
+    {
+      id: "Dat_Metals",
+      dataName: "Metals",
+      systemDescription: "Esta é a Descrição do Sistema C.",
+    },
+    {
+      id: "Dat_Biochem",
+      dataName: "Biochemicals",
+      systemDescription: "Esta é a Descrição do Sistema D.",
+    },
+    {
+      id: "Dat_Pesticides",
+      dataName: "Pesticides",
+      systemDescription: "Esta é a Descrição do Sistema E.",
+    },
+  ];
+}
+function updateDropdown_Systems() {
+  dropdownMenu = document.getElementById("dropdown_SystemsMenu");
+  dropdownMenu.innerHTML = ""; //Limpa Lista de Opcoes Atuais
+
+  //Este Loop Itera sobre cada elemento na variavel array_Systems
+  array_Systems.forEach(({ id, systemName }) => {
+    listItem = document.createElement("li");
+    listItem.classList.add("dropdown-item");
+    listItem.id = id;
+    listItem.textContent = systemName;
+    listItem.addEventListener("click", changeDropdown_Systems);
+    dropdownMenu.appendChild(listItem);
+  });
+}
+// ------
+// Interage com elementos da tabela Parameters System
+
+function updateDropdown_Database() {
+  dropdownMenu = document.getElementById("dropdown_DatabaseMenu");
+  dropdownMenu.innerHTML = ""; //Limpa Lista de Opcoes Atuais
+
+  //Este Loop Itera sobre cada elemento na variavel array_Systems
+  array_Database.forEach(({ id, dataName }) => {
+    listItem = document.createElement("li");
+    listItem.classList.add("dropdown-item");
+    listItem.id = id;
+    listItem.textContent = dataName;
+    listItem.addEventListener("click", changeDropdown_Database);
+    dropdownMenu.appendChild(listItem);
+  });
+}

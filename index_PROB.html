@@ -2,13 +2,12 @@
 <html>
   <head>
     <title>Leitor de Porta Serial</title>
-    <!script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="scripts.js"></script>
     <link rel="stylesheet" href="./style.css">
-    <scr!____________________Bootstrap __________________________>  
+    <!____________________Bootstrap __________________________>  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" >
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js" ></script>
+    
   </head>
   <body>
     <!______________________________Menu________________________>
@@ -18,17 +17,6 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      ------------------------Select Database---------------------------
-      </button>
-      <ul class="dropdown-menu" id="dropdown_DatabaseMenu">
-        <li>
-          <a class="dropdown-item" href="#">Loading Systems...</a>
-        </li>
-      </ul>
-      <div class="card-body" id="text_DatabaseDescription">
-        Database Description
-      </div>
-
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -66,14 +54,12 @@
               <div id="botoes" class="col-xl-4 col-md-4"> 
                 <button id="connectButton">Open Serial Port</button><br>  
                 <button id="reset">Reset</button>
-                <button id="sair">Stop</button>
                 <br>
                 <label>Filename: </label>
-                <input type="text" id="filename">  
-                <button id="salvando">Salvar</button><br>
-
+                <input type="text" id="input" >  <br>
+                <button id="salva_dados" onclick="salvar">Salvar Dados</button>
                 <label>Select Folder</label>
-                <input type="file" id="diretorio">
+                <input type="file" id="diretorio"><button id="salvando"></button>
                 <a  id="salva" download="text.csv"></a>
               </div>                      
           </div>
@@ -101,6 +87,11 @@
           </div>
         </div>
       </div>  
+        <!___________________ Script para Salvar dados_____________>
+         
+         
+</body>
+</html>
   </main>
   <footer class="py-4 bg-light mt-auto">
     <div class="container-fluid px-4">
@@ -162,15 +153,18 @@
       </div>
     </div>
   </footer>
-    <!___________________ Salva.js __________________________>
+  <!> <!-- função ao clicar em salvar -->
+  <!___________________ FileSaver _______________________>
 
-    <!____________________Notie.js___________________________>
+      <link rel=https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js>
+          
+  <! ____________________Notie.js___________________________>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.min.js" integrity="sha512-NHRCwRf2LnVSlLDejCA9oS3fG3/FLSQIPCjAWl3M7tVi5wszwr6FxkjotWnQDXLE+aLKcxRrzFDNEgXj9nvkPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.css" integrity="sha512-7DgarsuahzxiOonlZeYgjXuPFVEDIylPzzlmANJdccCIO0H7ofXKbAKf0FWCkh8NkCFswe3Hpj6HegSTYH6SJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.js" integrity="sha512-A5WzD8nBuvwzzpLroI2Sa6RL4hv4GnxwEOsRtIFCyemSrOCVhwE/Xs1DSEB1AgpKafES8gMC+NmAUy3lGSqxZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.min.css" integrity="sha512-UrjLcAek5jbj1vwGbXkviPHtgSNVNQCedX7cBIMDdSI2iZtUcZcoTh2Sqc8R9mVcijOjFUi1IlxhfrE1uWaIog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <!____________________Chart.js __________________________>  
+    <! ____________________Chart.js __________________________>  
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
       crossorigin="anonymous"
