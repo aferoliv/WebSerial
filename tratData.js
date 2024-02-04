@@ -12,7 +12,8 @@ function serialData(text) {
       console.log(typeof canal, data_linha.slice(","), typeof linha);
     });
     */
-  aparelho = "arduino-gauge";
+  aparelho = selectedDatabase.dataName;
+  console.log(aparelho);
   if (aparelho == "arduino-gauge") {
     if (text.includes("alores")) {
       document.getElementById("dataLog").value += "\t \t dados \n";
@@ -28,6 +29,7 @@ function serialData(text) {
   }
   if (aparelho == "arduino-reatorH2") {
     if (text.includes("niciando")) {
+      document.getElementById("dataLog").value = "";
       document.getElementById("dataLog").value += "\t \t dados \n";
       document.getElementById("dataTitr").value += "# \t volume \t dados \n";
     } else {
@@ -86,7 +88,7 @@ function titrationData() {
     console.log(ponto, typeof ponto, volume, typeof volume);
     //const nome = document.getElementById("input").value;
     //
-  
+
     document.getElementById("dataTitr").value += volume;
     document.getElementById("dataTitr").value += ",";
     document.getElementById("dataTitr").value +=
@@ -95,13 +97,14 @@ function titrationData() {
     //
     //
     //
-  }else{    dadoTit = titr.data_array[titr.data_array.length - 1];
+  } else {
+    dadoTit = titr.data_array[titr.data_array.length - 1];
     titr.curva.push(dadoTit);
     volumetotal.push(volume);
     console.log(ponto, typeof ponto, volume, typeof volume);
     //const nome = document.getElementById("input").value;
     //
-  
+
     document.getElementById("dataTitr").value += volume;
     document.getElementById("dataTitr").value += ",";
     document.getElementById("dataTitr").value +=

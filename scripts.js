@@ -63,18 +63,21 @@ salvando.addEventListener("click", function () {
   let blob_k = new Blob([texto_kin], { type: "text/plain;charset=utf-8" });
   saveAs(blob_k, nome + "-kin.csv");
 });
-function padrao_sinal() {
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+//Obtem Lista de Database dinamicamente
+function getList_Database() {
   return [
     {
-      id: "pHmetro-pH",
-      dataName: "pH",
-      systemDescription: "Esta é a Descrição do Sistema A.",
+      id: "ardGauge",
+      dataName: "arduino-gauge",
+      systemDescription: "arduino-gauge",
     },
     {
-      id: "pHmetro-mV",
-      dataName: "mV",
-      systemDescription: "Esta é a Descrição do Sistema B.",
+      id: "ardReatorH2",
+      dataName: "arduino-reatorH2",
+      systemDescription: "arduino-reatorH2",
     },
+    /*
     {
       id: "Dat_Metals",
       dataName: "Metals",
@@ -90,22 +93,10 @@ function padrao_sinal() {
       dataName: "Pesticides",
       systemDescription: "Esta é a Descrição do Sistema E.",
     },
+    */
   ];
 }
-function updateDropdown_Systems() {
-  dropdownMenu = document.getElementById("dropdown_SystemsMenu");
-  dropdownMenu.innerHTML = ""; //Limpa Lista de Opcoes Atuais
 
-  //Este Loop Itera sobre cada elemento na variavel array_Systems
-  array_Systems.forEach(({ id, systemName }) => {
-    listItem = document.createElement("li");
-    listItem.classList.add("dropdown-item");
-    listItem.id = id;
-    listItem.textContent = systemName;
-    listItem.addEventListener("click", changeDropdown_Systems);
-    dropdownMenu.appendChild(listItem);
-  });
-}
 // ------
 // Interage com elementos da tabela Parameters System
 
@@ -123,3 +114,25 @@ function updateDropdown_Database() {
     dropdownMenu.appendChild(listItem);
   });
 }
+function changeDropdown_Database(event) {
+  selectedDatabase = array_Database.find(
+    (element) => element.id === event.target.id
+  );
+  console.log("Selected Database: ", selectedDatabase);
+  document.getElementById("dropdown_Database").textContent =
+    selectedDatabase.dataName;
+  document.getElementById("text_DatabaseDescription").textContent =
+    selectedDatabase.systemDescription;
+  // document.getElementById('text_DatabaseParameters').textContent = selectedDatabase.dataName;
+  //Inclua aqui outros elementos/parametros que precisam ser alterados quando um novo sistema for selecionado.
+  // Escrever os valores na Tabela
+  document.getElementById("dropdown_Database").textContent =
+    selectedDatabase.dataName;
+}
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+//Executa ações assim que a página for completamente carregada.
+window.addEventListener("DOMContentLoaded", (event) => {
+  console.log("Pagina Carregada!");
+  array_Database = getList_Database();
+  updateDropdown_Database();
+});
