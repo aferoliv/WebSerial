@@ -20,7 +20,7 @@
       <div class="col">
         <h1 class="mt-4">Semi-Automatic Titration SAT - Reches</h1>
         <div class="row">     
-          <!------------------------------->       
+          <!----------Coluna 1-------------------->       
           <div class="col-xl-6 col-md-4 card bg-primary text-white mb-4"            
              <div class="card bg-primary text-white mb-4">                                       
                   <div class="dropdown">
@@ -76,25 +76,14 @@
             <canvas id="titration" width="9%" height="10"></canvas>
           </div>
         </div>
+        <div>
+          <div id="controle" class="row">
+            <label>Window Range: </label>
+            <input type="text" id="tamanho_janela" placeholder="1000">
+          </div>
+        </div>
     </div>
-        <div id="textBox" class="col-xl-3 col-md-3"style="margin: 2%"> 
-          <figure>
-            <img
-              src="assets/images/reches500.png"
-              alt="description"
-              width="200"
-              height="96"
-            />
-            <figcaption style="font-size: xx-small text-align:center">
-              ReChES - Research Group of <br />
-              Chemistry of Solutions <br />and Interfaces
-              <br />
-              <a
-                href="https://solucaoquimica.com/"
-                target="_blank"
-                rel="nofollow"
-              >
-              </a><br />                    
+        <div id="textBox" class="col-xl-3 col-md-3"style="margin: 2%">                              
             <h5 style="text-align:left">Kinetics Data</h5>
             <textarea id="dataLog" rows="10" cols="30"></textarea>                
             <h5 style="text-align:left">Titration Data</h5> 
@@ -110,14 +99,13 @@
     <div class="row">
       <div class="col-xl-8 col-md-4">
         <br />
-      </div>
+      </div>  
       <div class="col-xl-4 col-md-4">
         <div class="card bg-primary text-white mb-4">
           <div class="card-body">Us:</div>
           <div class="container-fluid px-4">
             <div
-              class="d-flex align-items-center justify-content-between small"
-            >
+              class="d-flex align-items-center justify-content-between small">
               <figure>
                 <img
                   src="assets/images/reches500.png"
@@ -125,7 +113,7 @@
                   width="200"
                   height="96"
                 />
-                <figcaption style="font-size: xx-small">
+                <figcaption style="text-align: center; font-size: small">
                   ReChES - Research Group of <br />
                   Chemistry of Solutions <br />and Interfaces
                   <br />
@@ -144,7 +132,7 @@
                   width="200"
                   height="96"
                 />
-                <figcaption style="font-size: x-small">
+                <figcaption style="text-align: center; font-size: small">
                   Universidade Federal de Viçosa <br />
                   Brazil
                 </figcaption>

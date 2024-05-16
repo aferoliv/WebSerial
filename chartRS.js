@@ -1,7 +1,7 @@
 let ctx = document.getElementById("kinetics");
 
 var cinGrafico = new Chart(ctx, {
-  type: "scatter",
+  type: "line",
   data: {
     labels: [1, 2, 3, 4, 5, 6],
     datasets: [
@@ -52,7 +52,7 @@ var titGrafico = new Chart(ctx2, {
       {
         label: "pH",
         showLine: false,
-        data: [0,0,0,0,0,0],
+        data: [0, 0, 0, 0, 0, 0],
         lineTension: 0,
         fill: false,
         backgroundColor: "rgba(255, 99, 132, 1)",

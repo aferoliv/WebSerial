@@ -2,6 +2,8 @@ let titr = {
   data_array: [0],
   data_grafico: [0],
   data_titr: [0],
+  data_kin: [0],
+  data_tempo: [0],
   curva: [0],
   tempo: [0],
 };
@@ -25,7 +27,7 @@ document.getElementById("connectButton").addEventListener("click", async () => {
   const reader = port.readable.getReader();
   //var tempo = [];
   var temp = 0;
-
+  
   try {
     while ((transito = 1)) {
       const { value, done } = await reader.read();
@@ -50,7 +52,10 @@ document.getElementById("connectButton").addEventListener("click", async () => {
 
 captura_dados.addEventListener("click", function () {
   // salva o valor lido na Serial como novo arquivo Titulação
+  
+
   arrayTitr = titrationData();
+
 });
 //volume = document.getElementById("buttonVolume").value;
 salvando.addEventListener("click", function () {
@@ -77,12 +82,13 @@ function getList_Database() {
       dataName: "arduino-reatorH2",
       systemDescription: "arduino-reatorH2",
     },
-    /*
+    
     {
-      id: "Dat_Metals",
-      dataName: "Metals",
-      systemDescription: "Esta é a Descrição do Sistema C.",
+      id: "pHmetro",
+      dataName: "pHmetro",
+      systemDescription: "pHmetro tipo Lucadema",
     },
+    /*
     {
       id: "Dat_Biochem",
       dataName: "Biochemicals",
@@ -121,8 +127,7 @@ function changeDropdown_Database(event) {
   console.log("Selected Database: ", selectedDatabase);
   document.getElementById("dropdown_Database").textContent =
     selectedDatabase.dataName;
-  document.getElementById("text_DatabaseDescription").textContent =
-    selectedDatabase.systemDescription;
+  //document.getElementById("text_DatabaseDescription").textContent = selectedDatabase.systemDescription;
   // document.getElementById('text_DatabaseParameters').textContent = selectedDatabase.dataName;
   //Inclua aqui outros elementos/parametros que precisam ser alterados quando um novo sistema for selecionado.
   // Escrever os valores na Tabela
